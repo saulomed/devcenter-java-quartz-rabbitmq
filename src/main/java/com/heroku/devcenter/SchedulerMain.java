@@ -23,7 +23,7 @@ public class SchedulerMain {
     final static ConnectionFactory factory = new ConnectionFactory();
     
     public static void main(String[] args) throws Exception {
-        factory.setUri(System.getenv("CLOUDAMQP_URL"));
+//        factory.setUri(System.getenv("CLOUDAMQP_URL"));
         Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 
         scheduler.start();
