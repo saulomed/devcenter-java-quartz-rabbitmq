@@ -44,6 +44,7 @@ public class SchedulerMain {
         public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
             
             try {
+                logger.info("teste de execucao!!!");
                 Connection connection = factory.newConnection();
                 Channel channel = connection.createChannel();
                 String queueName = "work-queue-1";
