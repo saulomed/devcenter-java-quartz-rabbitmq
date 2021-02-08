@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.repeatSecondlyForever;
+import static org.quartz.SimpleScheduleBuilder.*;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 public class SchedulerMain {
@@ -32,7 +32,7 @@ public class SchedulerMain {
         
         Trigger trigger = newTrigger()
                 .startNow()
-                .withSchedule(repeatSecondlyForever(5))
+                .withSchedule(repeatHourlyForever(12))
                 .build();
 
         scheduler.scheduleJob(jobDetail, trigger);
