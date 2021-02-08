@@ -43,24 +43,27 @@ public class SchedulerMain {
         @Override
         public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
             
-            try {
-                logger.info("teste de execucao!!!");
-                Connection connection = factory.newConnection();
-                Channel channel = connection.createChannel();
-                String queueName = "work-queue-1";
-                Map<String, Object> params = new HashMap<String, Object>();
-                params.put("x-ha-policy", "all");
-                channel.queueDeclare(queueName, true, false, false, params);
+//            try {
+//                logger.info("teste de execucao!!!");
+//                Connection connection = factory.newConnection();
+//                Channel channel = connection.createChannel();
+//                String queueName = "work-queue-1";
+//                Map<String, Object> params = new HashMap<String, Object>();
+//                params.put("x-ha-policy", "all");
+//                channel.queueDeclare(queueName, true, false, false, params);
+//
+//                String msg = "Sent at:" + System.currentTimeMillis();
+//                byte[] body = msg.getBytes("UTF-8");
+//                channel.basicPublish("", queueName, MessageProperties.PERSISTENT_TEXT_PLAIN, body);
+//                logger.info("Message Sent: " + msg);
+//                connection.close();
+//            }
+//            catch (Exception e) {
+//                logger.error(e.getMessage(), e);
+//            }
 
-                String msg = "Sent at:" + System.currentTimeMillis();
-                byte[] body = msg.getBytes("UTF-8");
-                channel.basicPublish("", queueName, MessageProperties.PERSISTENT_TEXT_PLAIN, body);
-                logger.info("Message Sent: " + msg);
-                connection.close();
-            }
-            catch (Exception e) {
-                logger.error(e.getMessage(), e);
-            }
+            VerificaNomeacao verificaNomeacao = new VerificaNomeacao();
+            verificaNomeacao.run();
 
         }
         
