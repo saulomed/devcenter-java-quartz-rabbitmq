@@ -12,6 +12,8 @@ public class VerificaNomeacao implements Runnable
 {
 
     public static final String LORENA_GRACIELY_NEVES_TABLADA = "LORENA+GRACIELY+NEVES+TABLADA";
+    public static final String ALAIN = "ALAIN+ESMERALDO+LOPES";
+    public static final String BRUNO = "BRUNO+DE+CASTRO+FREITAS";
     private static String textoFalha = "Nenhum resultado foi encontrado para sua pesquisa.";
     public void run() {
         System.out.println("Verificacao executando");
@@ -28,6 +30,8 @@ public class VerificaNomeacao implements Runnable
 //        assertThat(codigoPagina, Matchers.containsString("Edição"));
 
         verificaNomeacao(LORENA_GRACIELY_NEVES_TABLADA, "Lorena");
+        verificaNomeacao(ALAIN, "Alain");
+        verificaNomeacao(BRUNO, "Bruno");
     }
 
     private void verificaNomeacao(String nomeBusca, String nomeEmail) {
