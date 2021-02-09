@@ -11,6 +11,7 @@ import java.util.TimeZone;
 public class VerificaNomeacao implements Runnable
 {
 
+    public static final String LORENA_GRACIELY_NEVES_TABLADA = "LORENA+GRACIELY+NEVES+TABLADA";
     private static String textoFalha = "Nenhum resultado foi encontrado para sua pesquisa.";
     public void run() {
         System.out.println("Verificacao executando");
@@ -26,12 +27,16 @@ public class VerificaNomeacao implements Runnable
 //        String codigoPagina = driver.getPageSource();
 //        assertThat(codigoPagina, Matchers.containsString("Edição"));
 
+        verificaNomeacao(LORENA_GRACIELY_NEVES_TABLADA, "Lorena");
+    }
+
+    private void verificaNomeacao(String nomeBusca, String nomeEmail) {
         URL url = null;
         String codigoPagina = null;
         try {
 //            url = new URL("https://doem.org.br/pe/petrolina/pesquisar?keyword=LORENA+GRACIELY+NEVES+TABLADA&data_publicacao=2021-02-07");
-            String endereco = "https://doem.org.br/pe/petrolina/pesquisar?keyword=LORENA+GRACIELY+NEVES+TABLADA&data_publicacao=%s";
-            endereco = String.format(endereco,getCurrentDay());
+            String endereco = "https://doem.org.br/pe/petrolina/pesquisar?keyword=%s&data_publicacao=%s";
+            endereco = String.format(endereco,nomeBusca,getCurrentDay());
             System.out.println(endereco);
             url = new URL(endereco);
             System.setProperty("http.agent", "Chrome");
@@ -66,13 +71,14 @@ public class VerificaNomeacao implements Runnable
 //        assertTrue(!codigoPagina.contains(textoFalha));
 //        assertNotNull(driver.findElement(By.cssSelector("div[class='box-diario'")));
         Mail email = new Mail();
+        nomeEmail = nomeEmail + " - "+getCurrentDay();
         if(codigoPagina.contains(textoFalha))
         {
-            email.enviaEmail(textoFalha);
+            email.enviaEmail(textoFalha,nomeEmail);
         }
         else
         {
-            email.enviaEmail("Verifiquei o diario, possivel nomeação");
+            email.enviaEmail("Verifiquei o diario, possivel nomeação",nomeEmail);
         }
 
         System.out.println("fim Verificacao");

@@ -32,7 +32,8 @@ public class SchedulerMain {
         
         Trigger trigger = newTrigger()
                 .startNow()
-                .withSchedule(repeatHourlyForever(12))
+                //.withSchedule(repeatHourlyForever(12))
+                .withSchedule(CronScheduleBuilder.cronSchedule("* 30 20 * * ? *"))
                 .build();
 
         scheduler.scheduleJob(jobDetail, trigger);

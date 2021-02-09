@@ -8,7 +8,7 @@ import java.util.Properties;
 public class Mail
 {
 
-    public void enviaEmail(String texto) {
+    public void enviaEmail(String texto, String nomeAssunto) {
         Properties props = new Properties();
         /** Parâmetros de conexão com servidor Gmail */
         props.put("mail.debug", "true");
@@ -44,7 +44,9 @@ public class Mail
                     .parse("saulomed@gmail.com, lorenatablada@gmail.com");
 
             message.setRecipients(Message.RecipientType.TO, toUser);
-            message.setSubject("Verificação Nomeação Petrolina");//Assunto
+            String assuntoEmail = "Verificação Nomeação Petrolina - %s";
+            assuntoEmail = String.format(assuntoEmail,nomeAssunto);
+            message.setSubject(assuntoEmail);//Assunto
             message.setText(texto);
             /**Método para enviar a mensagem criada*/
             Transport.send(message);
