@@ -37,7 +37,7 @@ public class SchedulerMain {
                 //.withSchedule(repeatHourlyForever(12))
                 //.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 0 ? * * *"))
                 .withIdentity("trigger1","groupTest")
-                .withSchedule(dailyAtHourAndMinute(12,42))
+                .withSchedule(dailyAtHourAndMinute(12,47))
                 .forJob(jobDetail)
                 .build();
 
