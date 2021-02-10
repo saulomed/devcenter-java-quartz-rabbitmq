@@ -12,10 +12,12 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.*;
 import static org.quartz.TriggerBuilder.newTrigger;
+import static org.quartz.CronScheduleBuilder.*;
 
 public class SchedulerMain {
 
@@ -31,9 +33,12 @@ public class SchedulerMain {
         JobDetail jobDetail = newJob(HelloJob.class).build();
         
         Trigger trigger = newTrigger()
-                .startNow()
+                //.startNow()
                 //.withSchedule(repeatHourlyForever(12))
-                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 0 ? * * *"))
+                //.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 0 ? * * *"))
+                .withIdentity("trigger1","groupTest")
+                .withSchedule(dailyAtHourAndMinute(12,42))
+                .forJob(jobDetail)
                 .build();
 
         scheduler.scheduleJob(jobDetail, trigger);
