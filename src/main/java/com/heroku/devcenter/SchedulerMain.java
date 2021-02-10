@@ -33,11 +33,11 @@ public class SchedulerMain {
         JobDetail jobDetail = newJob(HelloJob.class).build();
         
         Trigger trigger = newTrigger()
-                //.startNow()
-                //.withSchedule(repeatHourlyForever(12))
-                //.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 0 ? * * *"))
-                .withIdentity("trigger1","groupTest")
-                .withSchedule(dailyAtHourAndMinute(23,46))
+                .startNow()
+                .withSchedule(repeatMinutelyForever(1))
+//                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 0 ? * * *"))
+//                .withIdentity("trigger1","groupTest")
+//                .withSchedule(dailyAtHourAndMinute(23,46))
                 .forJob(jobDetail)
                 .build();
 
