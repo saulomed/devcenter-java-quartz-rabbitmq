@@ -10,6 +10,7 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
@@ -31,10 +32,13 @@ public class SchedulerMain {
         scheduler.start();
 
         JobDetail jobDetail = newJob(HelloJob.class).build();
-        
+        Calendar cal = Calendar.getInstance();
+//        cal.set(Calendar.DAY_OF_MONTH,11);
+        cal.set(Calendar.HOUR_OF_DAY,23);
+        cal.set(Calendar.MINUTE,57);
         Trigger trigger = newTrigger()
-                .startNow()
-                .withSchedule(repeatMinutelyForever(1))
+                .startAt(cal.getTime())
+                .withSchedule(repeatHourlyForever(24))
 //                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 0 ? * * *"))
 //                .withIdentity("trigger1","groupTest")
 //                .withSchedule(dailyAtHourAndMinute(23,46))
