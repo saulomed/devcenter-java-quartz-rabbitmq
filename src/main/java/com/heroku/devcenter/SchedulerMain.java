@@ -37,7 +37,7 @@ public class SchedulerMain {
         cal.set(Calendar.HOUR_OF_DAY,23);
         cal.set(Calendar.MINUTE,57);
         Trigger trigger = newTrigger()
-                .startAt(cal.getTime())
+                .startNow()
                 .withSchedule(repeatHourlyForever(24))
 //                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 0 ? * * *"))
 //                .withIdentity("trigger1","groupTest")
