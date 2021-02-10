@@ -40,7 +40,7 @@ public class VerificaNomeacao implements Runnable
         try {
 //            url = new URL("https://doem.org.br/pe/petrolina/pesquisar?keyword=LORENA+GRACIELY+NEVES+TABLADA&data_publicacao=2021-02-07");
             //String endereco = "https://doem.org.br/pe/petrolina/pesquisar?keyword=%s&data_publicacao=%s";
-            String endereco = "https://doem.org.br/pe/petrolina/pesquisar?keyword=LORENA+GRACIELY+NEVES+TABLADA&data_publicacao=2021-02-09"
+            String endereco = "https://doem.org.br/pe/petrolina/pesquisar?keyword=LORENA+GRACIELY+NEVES+TABLADA&data_publicacao=2021-02-09";
             endereco = String.format(endereco,nomeBusca,getCurrentDay());
             System.out.println(endereco);
             url = new URL(endereco);
