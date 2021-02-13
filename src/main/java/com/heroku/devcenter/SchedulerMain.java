@@ -24,7 +24,7 @@ public class SchedulerMain {
 
     final static Logger logger = LoggerFactory.getLogger(SchedulerMain.class);
     final static ConnectionFactory factory = new ConnectionFactory();
-    private static boolean enviado = false;
+    public static boolean enviado = false;
     
     public static void main(String[] args) throws Exception {
 //        factory.setUri(System.getenv("CLOUDAMQP_URL"));

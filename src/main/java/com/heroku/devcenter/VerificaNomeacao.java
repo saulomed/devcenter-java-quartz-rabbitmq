@@ -16,7 +16,6 @@ public class VerificaNomeacao implements Runnable
     public static final String ALAIN = "ALAIN+ESMERALDO+LOPES";
     public static final String BRUNO = "BRUNO+DE+CASTRO+FREITAS";
     private static String textoFalha = "Nenhum resultado foi encontrado para sua pesquisa.";
-    private static boolean enviado = false;
     public void run() {
         System.out.println("Verificacao executando");
 //        WebDriver driver = new ChromeDriver();
@@ -42,7 +41,7 @@ public class VerificaNomeacao implements Runnable
 
         System.out.println("Data de verificacao: "+getCurrentDay());
 
-        if(!enviado && now.after(cal.getTime()))
+        if(!SchedulerMain.enviado && now.after(cal.getTime()))
         {
             System.out.println("Realizar verificação");
             verificaNomeacao(LORENA_GRACIELY_NEVES_TABLADA, "Lorena");
@@ -50,10 +49,10 @@ public class VerificaNomeacao implements Runnable
             verificaNomeacao(BRUNO, "Bruno");
             System.out.println("Verificação realizada com sucesso");
         }
-        else if(enviado && now.before(cal.getTime()))
+        else if(SchedulerMain.enviado && now.before(cal.getTime()))
         {
             System.out.println("Marcar flag false");
-            enviado = false;
+            SchedulerMain.enviado = false;
         }
         else
         {
