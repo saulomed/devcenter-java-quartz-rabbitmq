@@ -24,6 +24,7 @@ public class SchedulerMain {
 
     final static Logger logger = LoggerFactory.getLogger(SchedulerMain.class);
     final static ConnectionFactory factory = new ConnectionFactory();
+    private static boolean enviado = false;
     
     public static void main(String[] args) throws Exception {
 //        factory.setUri(System.getenv("CLOUDAMQP_URL"));
@@ -38,7 +39,7 @@ public class SchedulerMain {
         cal.set(Calendar.MINUTE,57);
         Trigger trigger = newTrigger()
                 .startNow()
-                .withSchedule(repeatHourlyForever(24))
+                .withSchedule(repeatMinutelyForever(1))
 //                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 0 ? * * *"))
 //                .withIdentity("trigger1","groupTest")
 //                .withSchedule(dailyAtHourAndMinute(23,46))

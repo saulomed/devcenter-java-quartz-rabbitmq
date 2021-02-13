@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 public class VerificaNomeacao implements Runnable
@@ -15,6 +16,7 @@ public class VerificaNomeacao implements Runnable
     public static final String ALAIN = "ALAIN+ESMERALDO+LOPES";
     public static final String BRUNO = "BRUNO+DE+CASTRO+FREITAS";
     private static String textoFalha = "Nenhum resultado foi encontrado para sua pesquisa.";
+    private static boolean enviado = false;
     public void run() {
         System.out.println("Verificacao executando");
 //        WebDriver driver = new ChromeDriver();
@@ -29,9 +31,36 @@ public class VerificaNomeacao implements Runnable
 //        String codigoPagina = driver.getPageSource();
 //        assertThat(codigoPagina, Matchers.containsString("Edição"));
 
-        verificaNomeacao(LORENA_GRACIELY_NEVES_TABLADA, "Lorena");
-        verificaNomeacao(ALAIN, "Alain");
-        verificaNomeacao(BRUNO, "Bruno");
+        Calendar cal = Calendar.getInstance();
+//        cal.set(Calendar.DAY_OF_MONTH,11);
+        cal.set(Calendar.HOUR_OF_DAY,20);
+        cal.set(Calendar.MINUTE,15);
+
+        Date now = new Date();
+        System.out.println("Agora: "+now);
+        System.out.println("Hora Disparo: "+cal.getTime());
+
+        if(!enviado && now.after(cal.getTime()))
+        {
+            System.out.println("Realizar verificação");
+            verificaNomeacao(LORENA_GRACIELY_NEVES_TABLADA, "Lorena");
+            verificaNomeacao(ALAIN, "Alain");
+            verificaNomeacao(BRUNO, "Bruno");
+            System.out.println("Verificação realizada com sucesso");
+        }
+        else if(enviado && now.before(cal.getTime()))
+        {
+            System.out.println("Marcar flag false");
+            enviado = false;
+        }
+        else
+        {
+            System.out.println("Verificação já realizada ou flag já alterada. Nada a ser realizado");
+        }
+
+
+
+
     }
 
     private void verificaNomeacao(String nomeBusca, String nomeEmail) {
