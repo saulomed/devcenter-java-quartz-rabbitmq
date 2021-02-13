@@ -40,6 +40,8 @@ public class VerificaNomeacao implements Runnable
         System.out.println("Agora: "+now);
         System.out.println("Hora Disparo: "+cal.getTime());
 
+        System.out.println("Data de verificacao: "+getCurrentDay());
+
         if(!enviado && now.after(cal.getTime()))
         {
             System.out.println("Realizar verificação");
