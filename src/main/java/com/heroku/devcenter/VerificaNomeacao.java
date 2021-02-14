@@ -18,18 +18,6 @@ public class VerificaNomeacao implements Runnable
     private static String textoFalha = "Nenhum resultado foi encontrado para sua pesquisa.";
     public void run() {
         System.out.println("Verificacao executando");
-//        WebDriver driver = new ChromeDriver();
-//        // Visita a página do Correios
-//        String url = "https://doem.org.br/pe/petrolina/pesquisar?keyword=LORENA+GRACIELY+NEVES+TABLADA&data_publicacao=%s";
-//        System.out.println(String.format(url,getCurrentDay()));
-//        driver.get(String.format(url,getCurrentDay()));
-//
-//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//
-//        // verifica se há resultados
-//        String codigoPagina = driver.getPageSource();
-//        assertThat(codigoPagina, Matchers.containsString("Edição"));
-
         Calendar cal = Calendar.getInstance();
 //        cal.set(Calendar.DAY_OF_MONTH,11);
         cal.set(Calendar.HOUR_OF_DAY,15);
@@ -69,7 +57,7 @@ public class VerificaNomeacao implements Runnable
         String codigoPagina = null;
         try {
 //            url = new URL("https://doem.org.br/pe/petrolina/pesquisar?keyword=LORENA+GRACIELY+NEVES+TABLADA&data_publicacao=2021-02-07");
-            String endereco = "https://doem.org.br/pe/petrolina/pesquisar?keyword=%s&data_publicacao=%s";
+            String endereco = "http://doem.org.br/pe/petrolina/pesquisar?keyword=%s&data_publicacao=%s";
 //            String endereco = "http://doem.org.br/pe/petrolina/pesquisar?keyword=LORENA+GRACIELY+NEVES+TABLADA&data_publicacao=2021-02-09";
             endereco = String.format(endereco,nomeBusca,getCurrentDay());
             System.out.println(endereco);
