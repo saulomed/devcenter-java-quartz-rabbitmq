@@ -34,16 +34,9 @@ public class SchedulerMain {
         scheduler.start();
 
         JobDetail jobDetail = newJob(HelloJob.class).build();
-        Calendar cal = Calendar.getInstance();
-//        cal.set(Calendar.DAY_OF_MONTH,11);
-        cal.set(Calendar.HOUR_OF_DAY,23);
-        cal.set(Calendar.MINUTE,57);
         Trigger trigger = newTrigger()
                 .startNow()
                 .withSchedule(repeatMinutelyForever(1))
-//                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 0 ? * * *"))
-//                .withIdentity("trigger1","groupTest")
-//                .withSchedule(dailyAtHourAndMinute(23,46))
                 .forJob(jobDetail)
                 .build();
 

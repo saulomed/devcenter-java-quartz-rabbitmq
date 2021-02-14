@@ -32,8 +32,8 @@ public class VerificaNomeacao implements Runnable
 
         Calendar cal = Calendar.getInstance();
 //        cal.set(Calendar.DAY_OF_MONTH,11);
-        cal.set(Calendar.HOUR_OF_DAY,20);
-        cal.set(Calendar.MINUTE,15);
+        cal.set(Calendar.HOUR_OF_DAY,15);
+        cal.set(Calendar.MINUTE,36);
 
         Date now = new Date();
         System.out.println("Agora: "+now);
