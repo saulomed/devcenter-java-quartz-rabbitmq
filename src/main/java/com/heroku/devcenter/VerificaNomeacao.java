@@ -21,8 +21,8 @@ public class VerificaNomeacao implements Runnable
         System.out.println("Verificacao executando");
         Calendar cal = Calendar.getInstance();
 //        cal.set(Calendar.DAY_OF_MONTH,11);
-        cal.set(Calendar.HOUR_OF_DAY,15);
-        cal.set(Calendar.MINUTE,36);
+        cal.set(Calendar.HOUR_OF_DAY,20);
+        cal.set(Calendar.MINUTE,30);
 
         Date now = new Date();
         System.out.println("Agora: "+now);
@@ -33,9 +33,9 @@ public class VerificaNomeacao implements Runnable
         if(!flagEnviado && now.after(cal.getTime()))
         {
             System.out.println("Realizar verificação");
-//            verificaNomeacao(LORENA_GRACIELY_NEVES_TABLADA, "Lorena");
-//            verificaNomeacao(ALAIN, "Alain");
-//            verificaNomeacao(BRUNO, "Bruno");
+            verificaNomeacao(LORENA_GRACIELY_NEVES_TABLADA, "Lorena");
+            verificaNomeacao(ALAIN, "Alain");
+            verificaNomeacao(BRUNO, "Bruno");
             flagEnviado = true;
             System.out.println("Verificação realizada com sucesso");
         }
