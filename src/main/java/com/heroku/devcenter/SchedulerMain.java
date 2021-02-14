@@ -25,6 +25,7 @@ public class SchedulerMain {
     final static Logger logger = LoggerFactory.getLogger(SchedulerMain.class);
     final static ConnectionFactory factory = new ConnectionFactory();
     public static boolean enviado = false;
+    public static VerificaNomeacao verificacao = new VerificaNomeacao();
     
     public static void main(String[] args) throws Exception {
 //        factory.setUri(System.getenv("CLOUDAMQP_URL"));
@@ -73,8 +74,9 @@ public class SchedulerMain {
 //                logger.error(e.getMessage(), e);
 //            }
 
-            VerificaNomeacao verificaNomeacao = new VerificaNomeacao();
-            verificaNomeacao.run();
+//            VerificaNomeacao verificaNomeacao = new VerificaNomeacao();
+//            verificaNomeacao.run();
+            verificacao.run();
 
         }
         
