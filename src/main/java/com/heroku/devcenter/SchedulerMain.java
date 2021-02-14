@@ -1,30 +1,20 @@
 package com.heroku.devcenter;
 
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.MessageProperties;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TimeZone;
-
 import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.*;
+import static org.quartz.SimpleScheduleBuilder.repeatMinutelyForever;
 import static org.quartz.TriggerBuilder.newTrigger;
-import static org.quartz.CronScheduleBuilder.*;
 
 public class SchedulerMain {
 
     final static Logger logger = LoggerFactory.getLogger(SchedulerMain.class);
     final static ConnectionFactory factory = new ConnectionFactory();
-    public static boolean enviado = false;
     public static VerificaNomeacao verificacao = new VerificaNomeacao();
     
     public static void main(String[] args) throws Exception {
@@ -45,7 +35,6 @@ public class SchedulerMain {
 
     public static class HelloJob implements Job {
         
-        @Override
         public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
             
 //            try {

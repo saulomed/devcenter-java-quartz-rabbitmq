@@ -16,6 +16,7 @@ public class VerificaNomeacao implements Runnable
     public static final String ALAIN = "ALAIN+ESMERALDO+LOPES";
     public static final String BRUNO = "BRUNO+DE+CASTRO+FREITAS";
     private static String textoFalha = "Nenhum resultado foi encontrado para sua pesquisa.";
+    public static boolean flagEnviado = false;
     public void run() {
         System.out.println("Verificacao executando");
         Calendar cal = Calendar.getInstance();
@@ -27,25 +28,29 @@ public class VerificaNomeacao implements Runnable
         System.out.println("Agora: "+now);
         System.out.println("Hora Disparo: "+cal.getTime());
         System.out.println("Data de verificacao: "+getCurrentDay());
-        System.out.println("flag: "+SchedulerMain.enviado);
+        System.out.println("flag: "+flagEnviado);
 
-        if(!SchedulerMain.enviado && now.after(cal.getTime()))
+        if(!flagEnviado && now.after(cal.getTime()))
         {
             System.out.println("Realizar verificação");
-            verificaNomeacao(LORENA_GRACIELY_NEVES_TABLADA, "Lorena");
-            verificaNomeacao(ALAIN, "Alain");
-            verificaNomeacao(BRUNO, "Bruno");
+//            verificaNomeacao(LORENA_GRACIELY_NEVES_TABLADA, "Lorena");
+//            verificaNomeacao(ALAIN, "Alain");
+//            verificaNomeacao(BRUNO, "Bruno");
+            flagEnviado = true;
             System.out.println("Verificação realizada com sucesso");
         }
-        else if(SchedulerMain.enviado && now.before(cal.getTime()))
+        else if(flagEnviado && now.before(cal.getTime()))
         {
             System.out.println("Marcar flag false");
-            SchedulerMain.enviado = false;
+            flagEnviado = false;
         }
         else
         {
+
             System.out.println("Verificação já realizada ou flag já alterada. Nada a ser realizado");
         }
+
+        System.out.println("Flag: "+flagEnviado);
 
 
 
