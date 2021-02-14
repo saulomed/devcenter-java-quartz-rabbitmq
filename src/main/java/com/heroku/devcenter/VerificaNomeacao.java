@@ -26,8 +26,8 @@ public class VerificaNomeacao implements Runnable
         Date now = new Date();
         System.out.println("Agora: "+now);
         System.out.println("Hora Disparo: "+cal.getTime());
-
         System.out.println("Data de verificacao: "+getCurrentDay());
+        System.out.println("flag: "+SchedulerMain.enviado);
 
         if(!SchedulerMain.enviado && now.after(cal.getTime()))
         {
@@ -84,22 +84,20 @@ public class VerificaNomeacao implements Runnable
 
                 //print result
                 codigoPagina = response.toString();
-                System.out.println("Pagina Resposta: "+codigoPagina);
+//                System.out.println("Pagina Resposta: "+codigoPagina);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-//        assertTrue(!codigoPagina.contains(textoFalha));
-//        assertNotNull(driver.findElement(By.cssSelector("div[class='box-diario'")));
         Mail email = new Mail();
         nomeEmail = nomeEmail + " - "+getCurrentDay();
-        if(codigoPagina.contains(textoFalha))
+        if(codigoPagina != null && codigoPagina.contains(textoFalha))
         {
             email.enviaEmail(textoFalha,nomeEmail);
         }
-        else
+        else if(codigoPagina != null && !codigoPagina.contains(textoFalha))
         {
             email.enviaEmail("Verifiquei o diario, possivel nomeação",nomeEmail);
         }
