@@ -54,20 +54,14 @@ public class VerificaNomeacao implements Runnable {
         
         String codigoPagina = null;
         int code = 0;
+        String endereco = "http://doem.org.br/pe/petrolina/pesquisar?keyword=%s&data_publicacao=%s";
+        endereco = String.format(endereco, nomeBusca, getCurrentDay());
         try {
-            // url = new
-            // URL("https://doem.org.br/pe/petrolina/pesquisar?keyword=LORENA+GRACIELY+NEVES+TABLADA&data_publicacao=2021-02-07");
-            String endereco = "http://doem.org.br/pe/petrolina/pesquisar?keyword=%s&data_publicacao=%s";
+            
+            
             // String endereco =
             // "http://doem.org.br/pe/petrolina/pesquisar?keyword=LORENA+GRACIELY+NEVES+TABLADA&data_publicacao=2021-02-09";
-            endereco = String.format(endereco, nomeBusca, getCurrentDay());
             System.out.println(endereco);
-            // url = new URL(endereco);
-            // System.setProperty("http.agent", "Chrome");
-            // HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-            // connection.setRequestMethod("GET");
-            // connection.connect();
-
             HttpURLConnection connection = realizaConsulta(endereco);
             code = connection.getResponseCode();
             System.out.println("Response code of the object is " + code);
@@ -111,7 +105,9 @@ public class VerificaNomeacao implements Runnable {
             textoFalhaConsulta.append("Falha ao consultar nomeação")
             .append("\n")
             .append("codigo resposta: ")
-            .append(code);
+            .append(code)
+            .append("URL: ")
+            .append(endereco);
             email.enviaEmail(textoFalhaConsulta.toString(), nomeEmail);
         }
 
