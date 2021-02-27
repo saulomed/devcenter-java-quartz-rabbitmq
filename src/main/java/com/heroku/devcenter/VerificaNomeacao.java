@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -53,7 +51,7 @@ public class VerificaNomeacao implements Runnable {
     }
 
     private void verificaNomeacao(String nomeBusca, String nomeEmail) {
-        URL url = null;
+        
         String codigoPagina = null;
         try {
             // url = new
@@ -77,10 +75,10 @@ public class VerificaNomeacao implements Runnable {
             if (code != 200) {
 
                 endereco = endereco.replace("http", "https");
-                connection = realizaConsulta(endereco)
+                connection = realizaConsulta(endereco);
 
             }
-            
+
             if (code == 200) {
                 System.out.println("OK");
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
