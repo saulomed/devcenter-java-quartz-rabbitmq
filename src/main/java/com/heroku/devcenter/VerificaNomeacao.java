@@ -53,6 +53,7 @@ public class VerificaNomeacao implements Runnable {
     private void verificaNomeacao(String nomeBusca, String nomeEmail) {
         
         String codigoPagina = null;
+        int code = 0;
         try {
             // url = new
             // URL("https://doem.org.br/pe/petrolina/pesquisar?keyword=LORENA+GRACIELY+NEVES+TABLADA&data_publicacao=2021-02-07");
@@ -68,14 +69,14 @@ public class VerificaNomeacao implements Runnable {
             // connection.connect();
 
             HttpURLConnection connection = realizaConsulta(endereco);
-            int code = connection.getResponseCode();
+            code = connection.getResponseCode();
             System.out.println("Response code of the object is " + code);
-            // int code = connection.getResponseCode();
-
+            
             if (code != 200) {
 
                 endereco = endereco.replace("http", "https");
                 connection = realizaConsulta(endereco);
+                code = connection.getResponseCode();
 
             }
 
@@ -104,9 +105,14 @@ public class VerificaNomeacao implements Runnable {
         if (codigoPagina != null && codigoPagina.contains(textoFalha)) {
             email.enviaEmail(textoFalha, nomeEmail);
         } else if (codigoPagina != null && !codigoPagina.contains(textoFalha)) {
-            email.enviaEmail("Verifiquei o diario, possivel nomeação", nomeEmail);
+            email.enviaEmail("Verifique o diario, possivel nomeação", nomeEmail);
         } else if (codigoPagina == null) {
-            email.enviaEmail("Falha ao consultar nomeação", nomeEmail);
+            StringBuilder textoFalhaConsulta = new StringBuilder();
+            textoFalhaConsulta.append("Falha ao consultar nomeação")
+            .append("\n")
+            .append("codigo resposta: ")
+            .append(code);
+            email.enviaEmail(textoFalhaConsulta.toString(), nomeEmail);
         }
 
         System.out.println("fim Verificacao");
